@@ -6,7 +6,7 @@
 
 ---
 
-### Languages
+### Languages (public projects)
 
 <!-- TOP_LANGUAGES_START -->
 ```

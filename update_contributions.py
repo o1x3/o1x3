@@ -218,7 +218,17 @@ def main():
         if len(external) >= MAX_PRS:
             break
 
-    external.sort(key=lambda c: c["stars"], reverse=True)
+    # Sort by most recent first
+    month_order = {
+        "Jan": 1, "Feb": 2, "Mar": 3, "Apr": 4, "May": 5, "Jun": 6,
+        "Jul": 7, "Aug": 8, "Sep": 9, "Oct": 10, "Nov": 11, "Dec": 12,
+    }
+    def sort_key(c):
+        parts = c["merged_at"].split()
+        if len(parts) == 2:
+            return (int(parts[1]), month_order.get(parts[0], 0))
+        return (0, 0)
+    external.sort(key=sort_key, reverse=True)
     print(f"  {len(external)} external contributions")
 
     # Fetch top languages
