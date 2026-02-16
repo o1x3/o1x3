@@ -18,18 +18,8 @@ GITHUB_API = "https://api.github.com"
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
 
 MAX_PRS = 20
-SECTION_START = "<!-- OSS_CONTRIBUTIONS_START -->"
-SECTION_END = "<!-- OSS_CONTRIBUTIONS_END -->"
-LANG_START = "<!-- TOP_LANGUAGES_START -->"
-LANG_END = "<!-- TOP_LANGUAGES_END -->"
-
-LANG_EMOJI = {
-    "Python": "🐍", "JavaScript": "🟨", "TypeScript": "🔷", "Rust": "🦀",
-    "Go": "🐹", "Java": "☕", "C++": "⚡", "C": "⚙️", "Ruby": "💎",
-    "Swift": "🍎", "Kotlin": "🟣", "Shell": "🐚", "HTML": "🌐",
-    "CSS": "🎨", "PHP": "🐘", "Dart": "🎯", "Scala": "🔴",
-    "Elixir": "💧", "Lua": "🌙", "Zig": "⚡", "Vue": "💚",
-}
+SECTION_START = "<!-- OPEN_SOURCE_START -->"
+SECTION_END = "<!-- OPEN_SOURCE_END -->"
 
 
 def api(url):
@@ -90,12 +80,6 @@ def get_repo_info(full_name):
     return api(f"{GITHUB_API}/repos/{full_name}")
 
 
-def format_stars(n):
-    if n >= 1000:
-        return f"{n / 1000:.1f}k"
-    return str(n)
-
-
 def get_top_languages(username):
     """Fetch languages across user's own repos, weighted by bytes."""
     lang_bytes = {}
@@ -122,44 +106,32 @@ def get_top_languages(username):
     return [(lang, count / total) for lang, count in ranked]
 
 
-def build_lang_section(languages):
-    if not languages:
-        return ""
-
+def build_section(languages, contributions):
     lines = []
-    for lang, pct in languages:
-        emoji = LANG_EMOJI.get(lang, "📦")
-        bar_width = int(pct * 20)
-        bar = "█" * bar_width + "░" * (20 - bar_width)
-        lines.append(f"  {emoji} {lang:<14} {bar} {pct * 100:5.1f}%")
 
-    return "```\n" + "\n".join(lines) + "\n```"
+    # Language tags (>=1% only, top 6)
+    if languages:
+        tags = []
+        for lang, pct in languages:
+            if pct < 0.01:
+                break
+            tags.append(f"`{lang} {pct * 100:.0f}%`")
+            if len(tags) >= 6:
+                break
+        lines.append(" ".join(tags) + " <sub>public projects</sub>")
+        lines.append("")
 
-
-def build_contributions_section(contributions):
+    # Contributions as flat list
     if not contributions:
-        return "*No external contributions yet.*"
-
-    total = len(contributions)
-    repos = len({c["repo"] for c in contributions})
-    total_stars = sum(c["stars"] for c in contributions)
-
-    lines = []
-    lines.append(
-        f"**{total}** merged PRs across **{repos}** repos "
-        f"({format_stars(total_stars)} combined stars)"
-    )
-    lines.append("")
-    lines.append("| Repository | PR | Merged |")
-    lines.append("|---|---|---|")
-
-    for c in contributions:
-        lang = c["language"] or ""
-        emoji = LANG_EMOJI.get(lang, "")
-        stars = format_stars(c["stars"])
-        repo_cell = f"[{c['repo']}](https://github.com/{c['repo']}) · {emoji} {stars} ⭐"
-        pr_cell = f"[{c['title']}]({c['url']})"
-        lines.append(f"| {repo_cell} | {pr_cell} | {c['merged_at']} |")
+        lines.append("*No external contributions yet.*")
+    else:
+        for c in contributions:
+            repo = c["repo"]
+            number = c["number"]
+            url = c["url"]
+            title = c["title"]
+            merged = c["merged_at"]
+            lines.append(f"- [{repo}#{number}]({url}) — {title} · {merged}")
 
     return "\n".join(lines)
 
@@ -236,16 +208,14 @@ def main():
     languages = get_top_languages(username)
     print(f"  {len(languages)} languages found")
 
-    # Build sections
-    contrib_md = build_contributions_section(external)
-    lang_md = build_lang_section(languages)
+    # Build combined section
+    section_md = build_section(languages, external)
 
     # Update README
     with open(args.readme) as f:
         content = f.read()
 
-    content = replace_section(content, SECTION_START, SECTION_END, contrib_md)
-    content = replace_section(content, LANG_START, LANG_END, lang_md)
+    content = replace_section(content, SECTION_START, SECTION_END, section_md)
 
     # Update timestamp
     now = datetime.now(timezone.utc).strftime("%b %d, %Y")
