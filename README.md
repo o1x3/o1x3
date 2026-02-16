@@ -1,3 +1,19 @@
-<p  align="center">
-  <img src="https://raw.githubusercontent.com/o1x3/o1x3/master/profile-summary-card-output/github_dark/0-profile-details.svg" alt="github stats"></br>
-</p>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="dist/github-snake-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="dist/github-snake.svg" />
+  <img alt="github contribution snake" src="dist/github-snake.svg" />
+</picture>
+
+---
+
+### Languages
+
+<!-- TOP_LANGUAGES_START -->
+<!-- TOP_LANGUAGES_END -->
+
+### Open Source Contributions
+
+<!-- OSS_CONTRIBUTIONS_START -->
+<!-- OSS_CONTRIBUTIONS_END -->
+
+<!-- Last updated: — -->
