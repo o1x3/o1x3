@@ -6,7 +6,8 @@
 
 ---
 
-### Open Source &nbsp;<sub>public projects</sub>
+### Open Source
+<sub>public projects</sub>
 
 <!-- OPEN_SOURCE_START -->
 **TypeScript 65%** · **Swift 14%** · **Rust 9%** · **Python 8%** · **CSS 3%**
