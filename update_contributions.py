@@ -115,10 +115,10 @@ def build_section(languages, contributions):
         for lang, pct in languages:
             if pct < 0.01:
                 break
-            tags.append(f"`{lang} {pct * 100:.0f}%`")
+            tags.append(f"**{lang} {pct * 100:.0f}%**")
             if len(tags) >= 6:
                 break
-        lines.append(" ".join(tags) + " <sub>public projects</sub>")
+        lines.append(" · ".join(tags))
         lines.append("")
 
     # Contributions as flat list

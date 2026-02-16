@@ -6,10 +6,10 @@
 
 ---
 
-### Open Source
+### Open Source &nbsp;<sub>public projects</sub>
 
 <!-- OPEN_SOURCE_START -->
-`TypeScript 65%` `Swift 14%` `Rust 9%` `Python 8%` `CSS 3%` <sub>public projects</sub>
+**TypeScript 65%** · **Swift 14%** · **Rust 9%** · **Python 8%** · **CSS 3%**
 
 - [uutils/coreutils#10974](https://github.com/uutils/coreutils/pull/10974) — rm: report permission denied for unreadable subdirectories · Feb 2026
 - [surge-downloader/Surge#7](https://github.com/surge-downloader/Surge/pull/7) — security: remove CORS and add path validation · Jan 2026
