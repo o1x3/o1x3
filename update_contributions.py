@@ -20,6 +20,7 @@ TOKEN = os.environ.get("GITHUB_TOKEN", "")
 MAX_PRS = 20
 SECTION_START = "<!-- OPEN_SOURCE_START -->"
 SECTION_END = "<!-- OPEN_SOURCE_END -->"
+EXCLUDED_REPOS = {"ossamamehmood/Hacktoberfest"}
 
 
 def api(url):
@@ -131,7 +132,8 @@ def build_section(languages, contributions):
             url = c["url"]
             title = c["title"]
             merged = c["merged_at"]
-            lines.append(f"- [{repo}#{number}]({url}) — {title} · {merged}")
+            org = repo.split("/")[0]
+            lines.append(f'- <img src="https://github.com/{org}.png" width="18" /> [{repo}#{number}]({url}) — {title} · {merged}')
 
     return "\n".join(lines)
 
@@ -167,7 +169,7 @@ def main():
     external = []
     for pr in prs:
         repo = extract_repo(pr)
-        if not repo or repo in owned:
+        if not repo or repo in owned or repo in EXCLUDED_REPOS:
             continue
         if repo not in repo_cache:
             repo_cache[repo] = get_repo_info(repo)
