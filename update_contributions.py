@@ -133,7 +133,8 @@ def build_section(languages, contributions):
             title = c["title"]
             merged = c["merged_at"]
             org = repo.split("/")[0]
-            lines.append(f'- <img src="https://github.com/{org}.png" width="18" /> [{repo}#{number}]({url}) — {title} · {merged}')
+            stars = c["stars"]
+            lines.append(f'- <img src="https://github.com/{org}.png" width="14" /> [{repo}#{number}]({url}) — {title} · {merged} <!-- ★ {stars} -->')
 
     return "\n".join(lines)
 
