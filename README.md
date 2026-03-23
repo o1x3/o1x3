@@ -10,14 +10,14 @@
 <sub>public projects</sub>
 
 <!-- OPEN_SOURCE_START -->
-**Go 49%** · **Swift 23%** · **Python 13%** · **TypeScript 11%** · **CSS 4%** · **TeX 1%**
+**Swift 44%** · **Python 25%** · **TypeScript 21%** · **CSS 7%** · **TeX 2%**
 
-- <img src="https://github.com/astral-sh.png" width="14" /> [astral-sh/ruff#23537](https://github.com/astral-sh/ruff/pull/23537) — [`pydocstyle`] Add rule `D420` to enforce docstring section ordering · Feb 2026 <!-- ★ 46291 -->
-- <img src="https://github.com/astral-sh.png" width="14" /> [astral-sh/ruff#23510](https://github.com/astral-sh/ruff/pull/23510) — `[flake8-bandit]` Don't flag `BaseLoader`/`CBaseLoader` as unsafe in preview (`S506`) · Feb 2026 <!-- ★ 46291 -->
-- <img src="https://github.com/ducaale.png" width="14" /> [ducaale/xh#450](https://github.com/ducaale/xh/pull/450) — Pretty-print XML responses · Feb 2026 <!-- ★ 7658 -->
-- <img src="https://github.com/uutils.png" width="14" /> [uutils/coreutils#10974](https://github.com/uutils/coreutils/pull/10974) — rm: report permission denied for unreadable subdirectories · Feb 2026 <!-- ★ 22909 -->
-- <img src="https://github.com/surge-downloader.png" width="14" /> [surge-downloader/Surge#7](https://github.com/surge-downloader/Surge/pull/7) — security: remove CORS and add path validation · Jan 2026 <!-- ★ 2402 -->
+- <img src="https://github.com/astral-sh.png" width="14" /> [astral-sh/ruff#23537](https://github.com/astral-sh/ruff/pull/23537) — [`pydocstyle`] Add rule `D420` to enforce docstring section ordering · Feb 2026 <!-- ★ 46618 -->
+- <img src="https://github.com/astral-sh.png" width="14" /> [astral-sh/ruff#23510](https://github.com/astral-sh/ruff/pull/23510) — `[flake8-bandit]` Don't flag `BaseLoader`/`CBaseLoader` as unsafe in preview (`S506`) · Feb 2026 <!-- ★ 46618 -->
+- <img src="https://github.com/ducaale.png" width="14" /> [ducaale/xh#450](https://github.com/ducaale/xh/pull/450) — Pretty-print XML responses · Feb 2026 <!-- ★ 7672 -->
+- <img src="https://github.com/uutils.png" width="14" /> [uutils/coreutils#10974](https://github.com/uutils/coreutils/pull/10974) — rm: report permission denied for unreadable subdirectories · Feb 2026 <!-- ★ 22954 -->
+- <img src="https://github.com/surge-downloader.png" width="14" /> [surge-downloader/Surge#7](https://github.com/surge-downloader/Surge/pull/7) — security: remove CORS and add path validation · Jan 2026 <!-- ★ 2528 -->
 - <img src="https://github.com/rakshith-git.png" width="14" /> [rakshith-git/speed_reader-#1](https://github.com/rakshith-git/speed_reader-/pull/1) — Minor formatting changes · Nov 2021 <!-- ★ 17 -->
 <!-- OPEN_SOURCE_END -->
 
-<!-- Last updated: Mar 16, 2026 -->
+<!-- Last updated: Mar 23, 2026 -->
